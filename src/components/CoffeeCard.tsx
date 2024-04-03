@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -6,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   BORDERRADIUS,
@@ -22,12 +22,12 @@ interface CoffeeCardProps {
   name: string;
   id: string;
   type: string;
-  rested: string;
+  roasted: string;
   average_rating: number;
   buttonPressHandler: any;
   special_ingredient: string;
   imagelink_square: ImageSourcePropType;
-  price: {price: number; size: string; currency: string};
+  price: {price: string; size: string; currency: string};
   index: number;
 }
 const CARD_WIDTH = Dimensions.get('window').width * 0.32;
@@ -39,7 +39,7 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
   buttonPressHandler,
   index,
   price,
-  rested,
+  roasted,
   special_ingredient,
   type,
 }) => {
@@ -67,15 +67,15 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
       <View style={styles.CardFooterRow}>
         <Text style={styles.CardPriceContainer}>
           $<Text style={styles.CardPrice}>{price?.price}</Text>
-          <TouchableOpacity>
-            <BGIcon
-              color={COLORS.primaryWhiteHex}
-              name="add"
-              BGColor={COLORS.primaryOrangeHex}
-              size={FONTSIZE.size_10}
-            />
-          </TouchableOpacity>
         </Text>
+        <TouchableOpacity onPress={() => {}}>
+          <BGIcon
+            color={COLORS.primaryWhiteHex}
+            name="add"
+            BGColor={COLORS.primaryOrangeHex}
+            size={FONTSIZE.size_10}
+          />
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -97,11 +97,30 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: BORDERRADIUS.radius_20,
     borderTopRightRadius: BORDERRADIUS.radius_20,
   },
-  CardPrice: {},
-  CardPriceContainer: {},
-  CardSubTitle: {},
-  CardTitle: {},
-  CardFooterRow: {},
+  CardPrice: {
+    color: COLORS.primaryWhiteHex,
+  },
+  CardPriceContainer: {
+    fontFamily: FONTFAMILY.poppins_semibold,
+    color: COLORS.primaryOrangeHex,
+    fontSize: FONTSIZE.size_18,
+  },
+  CardSubTitle: {
+    fontFamily: FONTFAMILY.poppins_light,
+    color: COLORS.primaryWhiteHex,
+    fontSize: FONTSIZE.size_10,
+  },
+  CardTitle: {
+    fontFamily: FONTFAMILY.poppins_medium,
+    color: COLORS.primaryWhiteHex,
+    fontSize: FONTSIZE.size_16,
+  },
+  CardFooterRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: SPACING.space_15,
+  },
   CardRatingText: {
     fontFamily: FONTFAMILY.poppins_medium,
     color: COLORS.primaryWhiteHex,

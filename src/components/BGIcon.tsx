@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {BORDERRADIUS, SPACING} from '../theme/theme';
 import CustomIcon from './CustomIcon';
 
