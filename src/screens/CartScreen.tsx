@@ -27,6 +27,14 @@ const CartScreen = ({navigation}: any) => {
   const decrementCartQuantity = useStore(
     (state: any) => state.decrementCartItemQuantity,
   );
+  const handleDecreaseQuantity = (id: string, size: string) => {
+    decrementCartQuantity(id, size);
+    calculateCartPrice();
+  };
+  const handleIncreaseQuantity = (id: string, size: string) => {
+    incrementCartQuantity(id, size);
+    calculateCartPrice();
+  };
   const tabBarHight = useBottomTabBarHeight();
   const buttonPressHandler = () => {
     navigation.push('Payment');
@@ -53,11 +61,10 @@ const CartScreen = ({navigation}: any) => {
                       type={data.type}
                       prices={data.prices}
                       roasted={data.roasted}
-                      calculatePrice={calculateCartPrice}
                       name={data.name}
                       imagelink_square={data.imagelink_square}
-                      decrrementCartItemQuantityHandler={decrementCartQuantity}
-                      incrementCartItemQuantityHandler={incrementCartQuantity}
+                      decrrementCartItemQuantityHandler={handleDecreaseQuantity}
+                      incrementCartItemQuantityHandler={handleIncreaseQuantity}
                     />
                   </TouchableOpacity>
                 ))}
