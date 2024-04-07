@@ -29,7 +29,7 @@ interface ImageBackgroundInfoProps {
   BackHandler?: () => void;
   ToggleFavourite: (favorite: boolean, type: string, id: string) => void;
   roasted: string;
-  rating_count: string;
+  ratings_count: string;
   title: string;
 }
 
@@ -147,6 +147,7 @@ const ImageBackgroundInfo: React.FC<ImageBackgroundInfoProps> = ({
 };
 const styles = StyleSheet.create({
   ImageContainer: {},
+
   PropertyTextLast: {
     color: COLORS.primaryWhiteHex,
     fontSize: FONTSIZE.size_10,

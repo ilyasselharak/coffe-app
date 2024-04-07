@@ -6,6 +6,7 @@ import {
   StatusBar,
   StyleSheet,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -46,10 +47,10 @@ const getCoffeeList = (category: string, data: any) => {
   }
 };
 const HomeScreen = ({navigation}: any) => {
-  const {CoffeeList, BeanList} = useStore();
-  const [categories, setCategories] = useState(
-    getCategoriesFromData(CoffeeList),
-  );
+  const CoffeeList = useStore((state: any) => state.CoffeeList);
+  const BeanList = useStore((state: any) => state.BeanList);
+  const categories = getCategoriesFromData(CoffeeList);
+
   const [search, setSearch] = useState('');
   const [categoryIndex, setCategoryIndex] = useState({
     index: 0,
@@ -82,6 +83,36 @@ const HomeScreen = ({navigation}: any) => {
     setCategoryIndex({index: 0, category: categories[0]});
     setSortedCoffee([...CoffeeList]);
     setSearch('');
+  };
+  const addToCart = useStore((state: any) => state.addToCart);
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
+
+  const addToCardHandler = ({
+    id,
+    index,
+    name,
+    roasted,
+    imagelink_square,
+    special_ingredient,
+    type,
+    prices,
+  }: any) => {
+    addToCart({
+      id,
+      index,
+      name,
+      roasted,
+      imagelink_square,
+      special_ingredient,
+      type,
+      prices,
+    });
+    calculateCartPrice();
+    ToastAndroid.showWithGravity(
+      `${name} is added to card`,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
   };
   return (
     <View style={styles.ScreenContainer}>
@@ -191,7 +222,7 @@ const HomeScreen = ({navigation}: any) => {
                 id={item.id}
                 imagelink_square={item.imagelink_square}
                 average_rating={item.average_rating}
-                buttonPressHandler={() => {}}
+                buttonPressHandler={addToCardHandler}
                 index={item.index}
                 price={item.prices[2]}
                 roasted={item.roasted}
@@ -225,7 +256,7 @@ const HomeScreen = ({navigation}: any) => {
                 id={item.id}
                 imagelink_square={item.imagelink_square}
                 average_rating={item.average_rating}
-                buttonPressHandler={() => {}}
+                buttonPressHandler={addToCardHandler}
                 index={item.index}
                 price={item.prices[2]}
                 roasted={item.roasted}
