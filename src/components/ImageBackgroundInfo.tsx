@@ -63,7 +63,9 @@ const ImageBackgroundInfo: React.FC<ImageBackgroundInfoProps> = ({
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => ToggleFavourite(favorite, type, id)}>
+              onPress={() => {
+                ToggleFavourite(favorite, type, id);
+              }}>
               <GradiantBGIcon
                 name="like"
                 color={

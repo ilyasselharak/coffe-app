@@ -35,7 +35,7 @@ const DetailsScreen = ({navigation, route}: any) => {
   };
 
   const ToggleFavorite = (favorite: boolean, type: string, id: string) => {
-    favorite ? addToFavorite(type, id) : deleteFromFavorite(type, id);
+    favorite ? deleteFromFavorite(type, id) : addToFavorite(type, id);
   };
   const addToCart = useStore((state: any) => state.addToCart);
   const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
