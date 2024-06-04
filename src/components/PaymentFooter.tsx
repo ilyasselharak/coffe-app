@@ -12,13 +12,13 @@ interface PriceProps {
   price: string;
   currency: string;
 }
-interface PayementFooterProps {
+interface PaymentFooterProps {
   price: PriceProps;
   buttonPressHandler: () => void;
   buttonTitle: string;
 }
 
-const PayementFooter: React.FC<PayementFooterProps> = ({
+const PaymentFooter: React.FC<PaymentFooterProps> = ({
   price,
   buttonPressHandler,
   buttonTitle,
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PayementFooter;
+export default PaymentFooter;

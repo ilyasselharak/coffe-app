@@ -13,7 +13,7 @@ import HeaderBar from '../components/HeaderBar';
 import CardItem from '../components/CardItem';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import EmptyListAnimation from '../components/EmptyListAnimation';
-import PayementFooter from '../components/PayementFooter';
+import PaymentFooter from '../components/PaymentFooter';
 import {Text} from 'react-native';
 
 const CartScreen = ({navigation}: any) => {
@@ -37,7 +37,7 @@ const CartScreen = ({navigation}: any) => {
   };
   const tabBarHight = useBottomTabBarHeight();
   const buttonPressHandler = () => {
-    navigation.push('Payment');
+    navigation.push('Payment', {amount: CartPrice});
   };
   return (
     <View style={styles.ScreenContainer}>
@@ -80,7 +80,7 @@ const CartScreen = ({navigation}: any) => {
             )}
           </View>
           {CartList.length ? (
-            <PayementFooter
+            <PaymentFooter
               buttonPressHandler={buttonPressHandler}
               price={{price: CartPrice, currency: '$'}}
               buttonTitle="Pay"

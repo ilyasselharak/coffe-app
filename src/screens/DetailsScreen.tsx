@@ -17,7 +17,7 @@ import {
 } from '../theme/theme';
 import ImageBackgroundInfo from '../components/ImageBackgroundInfo';
 import {TouchableWithoutFeedback} from 'react-native';
-import PayementFooter from '../components/PayementFooter';
+import PaymentFooter from '../components/PaymentFooter';
 
 const DetailsScreen = ({navigation, route}: any) => {
   const itemOfIndex = useStore((state: any) =>
@@ -141,7 +141,7 @@ const DetailsScreen = ({navigation, route}: any) => {
             ))}
           </View>
         </View>
-        <PayementFooter
+        <PaymentFooter
           buttonTitle="Add to Cart"
           buttonPressHandler={() =>
             addToCartHandler({
