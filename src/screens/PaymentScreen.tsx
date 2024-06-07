@@ -19,6 +19,8 @@ import PaymentMethod from '../components/PaymentMethod';
 import PaymentFooter from '../components/PaymentFooter';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomIcon from '../components/CustomIcon';
+import {useStore} from '../store/store';
+import PopUpAnimation from '../components/PopUpAnimation';
 
 const PaymentList = [
   {
@@ -43,15 +45,35 @@ const PaymentList = [
   },
 ];
 const PaymentScreen = ({navigation, route}: any) => {
-  const buttonPressHandler = () => {};
   const backHandler = () => {
     navigation.pop();
   };
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
+  const addToOrderHistoryListFromCart = useStore(
+    (state: any) => state.addToOrderHistoryListFromCart,
+  );
   const [paymentMode, setPaymentMode] = useState('Credit Card');
-
+  const [showAnimation, setShowAnimation] = useState(false);
+  const buttonPressHandler = () => {
+    setShowAnimation(true);
+    addToOrderHistoryListFromCart();
+    calculateCartPrice();
+    setTimeout(() => {
+      setShowAnimation(false);
+      navigation.navigate('History');
+    }, 2000);
+  };
   return (
     <View style={styles.ScreenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
+      {showAnimation ? (
+        <PopUpAnimation
+          style={styles.LottieAnimation}
+          source={require('../lottie/successful.json')}
+        />
+      ) : (
+        <></>
+      )}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.ScrollViewContainer}>
@@ -149,6 +171,9 @@ const PaymentScreen = ({navigation, route}: any) => {
 const styles = StyleSheet.create({
   CreditCardDateContainer: {
     alignItems: 'flex-end',
+  },
+  LottieAnimation: {
+    flex: 1,
   },
   CreditCardNameContainer: {
     alignItems: 'flex-start',
