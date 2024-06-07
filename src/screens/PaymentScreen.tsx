@@ -74,9 +74,7 @@ const PaymentScreen = ({navigation, route}: any) => {
       ) : (
         <></>
       )}
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.ScrollViewContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.HeaderContainer}>
           <TouchableOpacity onPress={backHandler}>
             <GradiantBGIcon
@@ -250,6 +248,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.primaryBlackHex,
   },
-  ScrollViewContainer: {},
 });
 export default PaymentScreen;

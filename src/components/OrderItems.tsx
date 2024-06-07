@@ -28,6 +28,7 @@ const OrderItems: React.FC<OrderItemsProps> = ({
       <View style={styles.OrderContainer}>
         {orderList.map((orderItem: any) => (
           <OrderItem
+            key={orderItem.id}
             special_ingredient={orderItem.special_ingredient}
             prices={orderItem.prices}
             name={orderItem.name}

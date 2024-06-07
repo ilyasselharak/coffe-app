@@ -7,19 +7,13 @@ import BeansData from '../data/BeansData';
 
 export const useStore = create(
   persist(
-    (set, get) => ({
+    set => ({
       CoffeeList: CoffeeData,
       BeanList: BeansData,
       CartPrice: 0,
       FavoritesList: [],
       CartList: [],
       OrderHistoryList: [],
-      clearCartList: () =>
-        set(
-          produce(state => {
-            state.CartList = [];
-          }),
-        ),
       addToCart: (cartItem: any) =>
         set(
           produce(state => {

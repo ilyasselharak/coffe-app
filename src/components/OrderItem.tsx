@@ -44,7 +44,7 @@ const OrderItem: React.FC<OrderItemProps> = ({
         </View>
         <View style={styles.OrderSizesContainer}>
           {prices.map((price: any) => (
-            <View style={styles.OrderItemSizesContainer}>
+            <View key={price.id} style={styles.OrderItemSizesContainer}>
               <View style={styles.OrderItemSizePrice}>
                 <Text style={styles.OrderSize}>{price.size}</Text>
                 <Text style={styles.OrderPriceContainer}>

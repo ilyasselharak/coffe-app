@@ -1,10 +1,4 @@
-import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {useStore} from '../store/store';
 import {COLORS, SPACING} from '../theme/theme';
@@ -14,12 +8,10 @@ import CardItem from '../components/CardItem';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import EmptyListAnimation from '../components/EmptyListAnimation';
 import PaymentFooter from '../components/PaymentFooter';
-import {Text} from 'react-native';
 
 const CartScreen = ({navigation}: any) => {
   const CartList = useStore((state: any) => state.CartList);
   const CartPrice = useStore((state: any) => state.CartPrice);
-  const clearData = useStore((state: any) => state.clearCartList);
   const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
   const incrementCartQuantity = useStore(
     (state: any) => state.incrementCartItemQuantity,
@@ -88,19 +80,12 @@ const CartScreen = ({navigation}: any) => {
           ) : (
             <></>
           )}
-          <Pressable onPress={() => clearData()}>
-            <Text style={styles.Clear}>clear</Text>
-          </Pressable>
         </View>
       </ScrollView>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  Clear: {
-    color: COLORS.primaryOrangeHex,
-  },
-  ScrollViewContainer: {},
   ListItemContainer: {
     paddingHorizontal: SPACING.space_20,
     gap: SPACING.space_20,

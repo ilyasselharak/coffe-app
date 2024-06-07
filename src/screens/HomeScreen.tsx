@@ -200,7 +200,7 @@ const HomeScreen = ({navigation}: any) => {
           ref={ListRef}
           ListEmptyComponent={
             <View style={styles.EmptyListContainer}>
-              <Text style={styles.CategoryText}>No Coffee Available</Text>
+              <Text>No Coffee Available</Text>
             </View>
           }
           showsHorizontalScrollIndicator={false}
@@ -272,7 +272,6 @@ const HomeScreen = ({navigation}: any) => {
 };
 
 const styles = StyleSheet.create({
-  CategoryText: {},
   EmptyListContainer: {
     width: Dimensions.get('window').width - SPACING.space_30 * 2,
     paddingVertical: SPACING.space_36 * 3.4,
